@@ -26,10 +26,6 @@ video {
   pointer-events: none;
 }
 
-#bottom {
-  max-width: 1080px;
-  min-width: 1080px;
-}
 .hidden {
   display: none;
 }
