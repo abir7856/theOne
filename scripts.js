@@ -48,13 +48,12 @@ window.addEventListener("DOMContentLoaded", () => {
   makeEditable(document.getElementById("openingAmount"));
 });
 
-// Image upload on long Press
-
+// 🔰 Initialize variables
 const fileInput = document.getElementById("fileInput");
 let currentImg = null;
 let pressTimer;
 
-// Load saved images from localStorage on page load
+// 🚀 Load saved images from localStorage on page load
 document.querySelectorAll(".uploadable").forEach((img) => {
   const savedImg = localStorage.getItem(img.dataset.key);
   if (savedImg) {
@@ -82,13 +81,13 @@ document.querySelectorAll(".uploadable").forEach((img) => {
   img.addEventListener("touchcancel", () => clearTimeout(pressTimer));
 });
 
-// When file selected
+// 📂 When file selected
 fileInput.addEventListener("change", (e) => {
   if (!currentImg || !e.target.files[0]) return;
   const reader = new FileReader();
   reader.onload = function (event) {
     currentImg.src = event.target.result;
-    // Save to localStorage
+    // 💾 Save to localStorage
     localStorage.setItem(currentImg.dataset.key, event.target.result);
   };
   reader.readAsDataURL(e.target.files[0]);
