@@ -21,15 +21,21 @@
       body {
         font-family: "Roboto", sans-serif;
       }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
     </style>
     <title>Document</title>
   </head>
   <body>
-    <main
-      class="min-w-[1024px] max-w-[1024px] min-h-[2400px] max-h-[2400px] mx-auto bg-[#eceff4]"
-    >
+    <main class="w-full h-screen mx-auto bg-[#eceff4]">
       <header
-        class="min-w-[1024px] max-w-[1024px] min-h-[2400px] max-h-[2400px] mx-auto relative"
+        class="w-full h-screen mx-auto relative pb-24 overflow-y-auto no-scrollbar"
       >
         <div class="sticky top-0 z-50">
           <img
@@ -40,30 +46,30 @@
         </div>
         <div>
           <div
-            class="absolute top-[190px] left-9 z-10 flex justify-around items-center gap-6 p-2 pr-4 rounded-full"
+            class="absolute top-[75px] left-[10px] z-10 flex justify-around items-center gap-6 p-2 pr-4 rounded-full"
           >
             <p
               id="mainBalance"
-              class="text-[85px] font-semibold text-[#11315a] cursor-pointer"
+              class="text-[28px] font-semibold text-[#11315a] cursor-pointer"
             >
               0.00
             </p>
-            <p class="text-[85px] font-semibold text-[#11315a] -ml-1">
+            <p class="text-[28px] font-semibold text-[#11315a] -ml-4">
               &#x20B9;
             </p>
           </div>
           <img
             src="img/history/mainAccountBalance.png"
             alt=""
-            class="pt-[130px]"
+            class="pt-[53px]"
           />
         </div>
-        <div class="sticky top-[130px] shadow-md">
+        <div class="sticky top-[128px] shadow-md">
           <img src="img/history/3.png" alt="" />
         </div>
-        <section class="text-2xl">
+        <section class="">
           <div
-            class="bg-white mt-4 mx-6 rounded-xl flex justify-between p-8 shadow-md"
+            class="bg-white mt-2 mx-3 rounded-lg flex justify-between p-3 shadow-md text-sm"
           >
             <div><p class="text-[#607f9c]">Bets for period:</p></div>
             <div class="flex justify-between gap-1">
@@ -72,16 +78,16 @@
             </div>
           </div>
           <div
-            class="bg-white shadow-md rounded-xl p-8 border border-gray-100 mt-4 mx-6"
+            class="bg-white shadow-md rounded-xl p-4 border border-gray-100 mt-2 mx-3"
           >
             <!-- Top row -->
             <div class="flex items-center justify-between mb-6">
-              <p class="text-[#607f9c]">17.09.2025 (00:59)</p>
+              <p class="text-[#607f9c] text-sm">17.09.2025 (00:59)</p>
               <button class="text-blue-500 mr-3">
                 <!-- তিন ডট মেনু -->
                 <svg
-                  width="20"
-                  height="30"
+                  width="10"
+                  height="20"
                   viewBox="0 0 10 40"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -108,24 +114,24 @@
                     >48.4 &#x20B9;</span
                   >
                 </p>
-                <div class="flex items-center gap-4">
-                  <img class="w-11 h-11" src="img/Logo/paidOut.png" alt="" />
+                <div class="flex items-center gap-2">
+                  <img class="w-6 h-6" src="img/Logo/paidOut.png" alt="" />
                   <span class="font-semibold text-green-600">Paid out</span>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="bg-white shadow-md rounded-xl p-8 border border-gray-100 mt-4 mx-6"
+            class="bg-white shadow-md rounded-xl p-4 border border-gray-100 mt-2 mx-3"
           >
             <!-- Top row -->
             <div class="flex items-center justify-between mb-6">
-              <p class="text-[#607f9c]">17.09.2025 (00:33)</p>
+              <p class="text-[#607f9c] text-sm">17.09.2025 (00:33)</p>
               <button class="text-blue-500 mr-3">
                 <!-- তিন ডট মেনু -->
                 <svg
-                  width="20"
-                  height="30"
+                  width="10"
+                  height="20"
                   viewBox="0 0 10 40"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -149,39 +155,39 @@
                 <p class="flex gap-4">
                   <span class="text-[#607f9c]">Status:</span>
                 </p>
-                <div class="flex items-center gap-4">
-                  <img class="w-11 h-11" src="img/Logo/Loss.png" alt="" />
+                <div class="flex items-center gap-2">
+                  <img class="w-6 h-6" src="img/Logo/Loss.png" alt="" />
                   <span class="font-semibold text-[#ea2b24]">Lost</span>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="bg-white shadow-md rounded-xl p-8 border border-gray-100 mt-4 mx-6"
+            class="bg-white shadow-md rounded-xl p-4 border border-gray-100 mt-2 mx-3"
           >
             <!-- Top row -->
             <div class="flex items-center justify-between mb-6">
-              <div class="flex gap-3">
+              <div class="flex gap-1">
                 <p class="text-[#607f9c]">17.09.2025 (15:32)</p>
                 <div
-                  class="bg-[#ea2b24] text-white flex gap-1 items-center w-16 rounded-lg px-1 text-xl"
+                  class="bg-[#ea2b24] text-white flex gap-1 items-center rounded-md px-1 text-xs h-4 mt-1"
                 >
                   <svg
-                    width="8"
-                    height="20"
+                    width="5"
+                    height="10"
                     viewBox="0 0 10 10"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <circle cx="5" cy="5" r="4" fill="white" />
                   </svg>
-                  <p class="font-semibold">Live</p>
+                  <p class="font-semibold pr-1">Live</p>
                 </div>
               </div>
               <button class="text-blue-500 mr-3">
                 <!-- তিন ডট মেনু -->
                 <svg
-                  width="20"
-                  height="30"
+                  width="10"
+                  height="20"
                   viewBox="0 0 10 40"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -206,8 +212,8 @@
                   <span class="text-[#607f9c]">Potential winnings:</span>
                   <span class="text-gray-800 font-bold">65.4 &#x20B9;</span>
                 </p>
-                <div class="flex items-center gap-4">
-                  <img class="w-11 h-11" src="img/Logo/Accepted.png" alt="" />
+                <div class="flex items-center gap-2">
+                  <img class="w-6 h-6" src="img/Logo/Accepted.png" alt="" />
                   <span class="font-semibold text-[#598acc]">Accepted</span>
                 </div>
               </div>
@@ -216,11 +222,11 @@
         </section>
       </header>
       <section
-        class="fixed bottom-0 w-full bg-white shadow-lg mx-auto min-w-[1024px] max-w-[1024px]"
+        class="fixed bottom-0 w-full bg-white shadow-lg mx-auto"
         id="bottom"
       >
         <div
-          class="relative flex justify-around items-end h-[156px] pb-6 min-w-[1024px] max-w-[1024px]"
+          class="relative flex justify-around items-end h-16 md:h-[156px] pb-3 sm:pb-5 md:pb-6 shadow-top"
         >
           <!-- Popular -->
           <a href="index.html">
@@ -231,10 +237,10 @@
             >
               <img
                 src="img/Bottom/popular.png"
-                class="h-16 mb-2 nav-icon"
+                class="h-6 w-6 md:h-16 md:w-14 mb-1 sm:mb-2 nav-icon"
                 alt="Popular"
               />
-              <p class="text-3xl font-medium nav-text text-[#5e809b]">
+              <p class="text-xs md:text-lg font-medium nav-text text-[#5e809b]">
                 Popular
               </p>
             </div>
@@ -248,10 +254,12 @@
           >
             <img
               src="img/Bottom/fvrt.png"
-              class="h-16 mb-2 nav-icon"
+              class="h-6 w-6 md:h-16 md:h-16 md:w-14 mb-1 sm:mb-2 nav-icon"
               alt="Favorites"
             />
-            <p class="text-3xl font-medium nav-text text-[#5e809b]">
+            <p
+              class="text-xs sm:text-xl md:text-3xl font-medium nav-text text-[#5e809b]"
+            >
               Favorites
             </p>
           </div>
@@ -263,15 +271,17 @@
             data-type="betslip"
           >
             <div
-              class="relative -top-6 rounded-full flex items-center justify-center shadow-lg betslip-icon w-32 h-32"
+              class="relative -top-2 md:-top-6 rounded-full flex items-center justify-center shadow-lg betslip-icon sm:w-24 sm:h-24 md:w-32 md:h-32"
             >
               <img
                 src="img/Bottom/mainB.png"
-                class="w-30 h-30"
+                class="w-12 h-12 md:w-30 md:h-30"
                 alt="Bet slip"
               />
             </div>
-            <p class="text-3xl font-medium mt-2 nav-text text-[#5e809b]">
+            <p
+              class="text-xs sm:text-xl md:text-3xl font-medium mt-1 sm:mt-2 nav-text text-[#5e809b]"
+            >
               Bet slip
             </p>
           </div>
@@ -285,10 +295,12 @@
             >
               <img
                 src="img/Bottom/historyActv.png"
-                class="h-16 mb-2 nav-icon"
+                class="h-6 w-6 md:h-16 md:h-16 md:w-14 mb-1 sm:mb-2 nav-icon"
                 alt="History"
               />
-              <p class="text-3xl font-medium nav-text text-[#488cd2]">
+              <p
+                class="text-xs sm:text-xl md:text-3xl font-medium nav-text text-[#488cd2]"
+              >
                 History
               </p>
             </div>
@@ -302,12 +314,17 @@
           >
             <img
               src="img/Bottom/menu.png"
-              class="h-16 mb-2 nav-icon"
+              class="h-6 w-6 md:h-16 md:w-14 mb-1 sm:mb-2 nav-icon"
               alt="Menu"
             />
-            <p class="text-3xl font-medium nav-text text-[#5e809b]">Menu</p>
+            <p
+              class="text-xs sm:text-xl md:text-3xl font-medium nav-text text-[#5e809b]"
+            >
+              Menu
+            </p>
           </div>
         </div>
+        <!-- <section class="w-full h-3 bg-[#eceff4]"></section> -->
       </section>
     </main>
     <script src="scripts.js"></script>
