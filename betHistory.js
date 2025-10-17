@@ -87,21 +87,22 @@ function saveBets(arr) {
 
 // find the top totals area in your HTML and the section that contains the bet-cards
 function findTotalsNodes() {
-  // find the first card that matches the top totals container
+  // নতুন totals card selector (HTML অনুযায়ী)
   const totalsCard = document.querySelector(
-    ".bg-white.mt-4.mx-6.rounded-xl.flex.justify-between.p-8.shadow-md"
+    ".bg-white.mt-2.mx-3.rounded-lg.flex.justify-between.p-3.shadow-md.text-xs"
   );
   if (!totalsCard) return null;
-  // inside it find the <p><span>0</span> bets</p> and the <h4>
+
   const spanCount = totalsCard.querySelector("p span");
   const h4Amount = totalsCard.querySelector("h4");
+
   return { totalsCard, spanCount, h4Amount };
 }
 
 function findBetsListContainer() {
   // your cards are inside <section class="text-2xl"> after the totals card.
   // We'll find the first <section class="text-2xl"> and render into it, replacing the static cards.
-  const section = document.querySelector("header section.text-2xl");
+  const section = document.querySelector("header section");
   return section;
 }
 
@@ -110,15 +111,15 @@ function renderBetCard(bet) {
   // outer wrapper: same classes as your sample cards
   const wrapper = document.createElement("div");
   wrapper.className =
-    "bg-white shadow-md rounded-xl p-8 border border-gray-100 mt-4 mx-6";
+    "bg-white shadow-md rounded-lg p-3 border border-gray-100 mt-2 mx-3";
   wrapper.dataset.id = bet.id;
 
   // top row
   const topRow = document.createElement("div");
-  topRow.className = "flex items-center justify-between mb-6";
+  topRow.className = "flex items-center justify-between mb-6 text-xs";
 
   const leftTop = document.createElement("div");
-  leftTop.className = "flex gap-3 items-center";
+  leftTop.className = "flex gap-1 items-center";
 
   const dateP = document.createElement("p");
   dateP.className = "text-[#607f9c]";
@@ -130,13 +131,13 @@ function renderBetCard(bet) {
   if (bet.eventLabel && bet.eventLabel.toLowerCase().includes("live")) {
     const liveDiv = document.createElement("div");
     liveDiv.className =
-      "bg-[#ea2b24] text-white flex gap-1 items-center w-16 rounded-lg px-1 text-xl";
-    liveDiv.innerHTML = `<svg width="8" height="20" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="4" fill="white" /></svg><p class="font-semibold">Live</p>`;
+      "bg-[#ea2b24] text-white flex gap-1 items-center rounded-md px-1 text-xs h-4 pr-2";
+    liveDiv.innerHTML = `<svg width="5" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="4" fill="white" /></svg><p class="font-semibold">Live</p>`;
     leftTop.appendChild(liveDiv);
   } else if (bet.eventLabel) {
     const otherDiv = document.createElement("div");
     otherDiv.className =
-      "bg-[#598acc] text-white flex gap-1 items-center rounded-lg px-2 text-sm";
+      "bg-[#598acc] text-white flex gap-1 items-center rounded-lg px-2 text-xs";
     otherDiv.innerHTML = `<p class="font-semibold">${escapeHtml(
       bet.eventLabel
     )}</p>`;
@@ -147,7 +148,7 @@ function renderBetCard(bet) {
 
   const threeBtn = document.createElement("button");
   threeBtn.className = "text-blue-500 mr-3 three-dot-btn";
-  threeBtn.innerHTML = `<svg width="20" height="30" viewBox="0 0 10 40" xmlns="http://www.w3.org/2000/svg">
+  threeBtn.innerHTML = `<svg width="10" height="20" viewBox="0 0 10 40" xmlns="http://www.w3.org/2000/svg">
     <circle cx="5" cy="5" r="4" fill="#607f9c" />
     <circle cx="5" cy="35" r="4" fill="#607f9c" />
     <circle cx="5" cy="20" r="4" fill="#607f9c" />
@@ -156,7 +157,7 @@ function renderBetCard(bet) {
 
   // details
   const details = document.createElement("div");
-  details.className = "mt-3 space-y-3";
+  details.className = "mt-3 space-y-2";
 
   // type & odds row
   const row1 = document.createElement("div");
@@ -192,7 +193,7 @@ function renderBetCard(bet) {
   const rightDiv = document.createElement("div");
   rightDiv.className = "flex items-center gap-4";
   const img = document.createElement("img");
-  img.className = "w-11 h-11";
+  img.className = "w-6 h-6";
   if (bet.status === "Paid out") img.src = "img/Logo/paidOut.png";
   else if (bet.status === "Lost") img.src = "img/Logo/Loss.png";
   else img.src = "img/Logo/Accepted.png";
@@ -253,30 +254,23 @@ function escapeHtml(s) {
 function renderAll(bets) {
   const section = findBetsListContainer();
   if (!section) return;
-  // We want to keep the top totals card intact; so find the first totals card and then remove other card-like nodes after it inside the section.
-  // Easiest: remove all existing cards that match the bet-card selector (they have border classes), then append our generated ones after the totals card.
-  // Find existing bet-card nodes by .bg-white.shadow-md.rounded-xl.p-8.border.border-gray-100.mt-4.mx-6
+
+  // নতুন HTML অনুযায়ী পুরনো bet cards remove
   const existing = Array.from(
     section.querySelectorAll(
-      ".bg-white.shadow-md.rounded-xl.p-8.border.border-gray-100.mt-4.mx-6"
+      ".bg-white.shadow-md.rounded-xl.p-4.border.border-gray-100.mt-2.mx-3"
     )
   );
   existing.forEach((n) => n.remove());
 
-  // insert new cards after the totals card (first child that is totals card)
-  // find reference node: the totals card we used earlier remains as first element inside section (it has classes .bg-white.mt-4.mx-6.rounded-xl.flex.justify-between.p-8.shadow-md)
   const totalsRef = section.querySelector(
-    ".bg-white.mt-4.mx-6.rounded-xl.flex.justify-between.p-8.shadow-md"
+    ".bg-white.mt-2.mx-3.rounded-lg.flex.justify-between.p-3.shadow-md.text-xs"
   );
-  let insertAfter = totalsRef ? totalsRef : section;
-
   bets.forEach((b) => {
     const card = renderBetCard(b);
-    // append after ref (we'll append to section - maintaining order)
     section.appendChild(card);
   });
 
-  // update totals display
   updateTotals(bets);
 }
 
@@ -326,7 +320,7 @@ function createModalOnce() {
           <input id="modal-event-label" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px" placeholder="eg: Live or 1XCHAMPIONS"/>
         </div>
         <div>
-          <label style="font-size:13px;color:#444">Type</label>
+          <label style="font-size:10px;color:#444">Type</label>
           <select id="modal-type" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px">
             <option>Single</option><option>Accumulator</option>
           </select>

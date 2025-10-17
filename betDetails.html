@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- DaisyUI CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="w-full h-screen mx-auto bg-[#eceff4] relative">
+      <header
+        class="sticky top-0 w-full mx-auto pb-16 overflow-y-auto no-scrollbar"
+      >
+        <div class="">
+          <img src="img/bet details.jpg" alt="" class="absolute top-0 left-0" />
+        </div>
+      </header>
+      <section>
+        <img
+          id="displayImage"
+          class="pb-16"
+          src="img/Screenshot_20251017_101934_MelBet.jpg"
+          alt="Click to change"
+        />
+        <input type="file" id="imageInput" accept="image/*" hidden />
+      </section>
+      <section
+        class="fixed bottom-0 w-full bg-white shadow-lg mx-auto"
+        id="bottom"
+      >
+        <div
+          class="relative flex justify-around items-end h-16 md:h-[156px] pb-3 sm:pb-5 md:pb-6 shadow-top"
+        >
+          <!-- Popular -->
+          <a href="index.html">
+            <div
+              class="nav-item flex flex-col items-center active"
+              data-name="popular"
+              data-type="normal"
+            >
+              <img
+                src="img/Bottom/popular.png"
+                class="h-6 w-6 md:h-16 md:w-14 mb-1 sm:mb-2 nav-icon"
+                alt="Popular"
+              />
+              <p class="text-xs md:text-lg font-medium nav-text text-[#5e809b]">
+                Popular
+              </p>
+            </div>
+          </a>
+
+          <!-- Favorites -->
+          <div
+            class="nav-item flex flex-col items-center"
+            data-name="fvrt"
+            data-type="normal"
+          >
+            <img
+              src="img/Bottom/fvrt.png"
+              class="h-6 w-6 md:h-16 md:h-16 md:w-14 mb-1 sm:mb-2 nav-icon"
+              alt="Favorites"
+            />
+            <p
+              class="text-xs sm:text-xl md:text-3xl font-medium nav-text text-[#5e809b]"
+            >
+              Favorites
+            </p>
+          </div>
+
+          <!-- Bet slip -->
+          <div
+            class="nav-item flex flex-col items-center"
+            data-name="mainB"
+            data-type="betslip"
+          >
+            <div
+              class="relative -top-2 md:-top-6 rounded-full flex items-center justify-center shadow-lg betslip-icon sm:w-24 sm:h-24 md:w-32 md:h-32"
+            >
+              <img
+                src="img/Bottom/mainB.png"
+                class="w-12 h-12 md:w-30 md:h-30"
+                alt="Bet slip"
+              />
+            </div>
+            <p
+              class="text-xs sm:text-xl md:text-3xl font-medium mt-1 sm:mt-2 nav-text text-[#5e809b]"
+            >
+              Bet slip
+            </p>
+          </div>
+
+          <!-- History -->
+          <a href="betHistory.html">
+            <div
+              class="nav-item flex flex-col items-center"
+              data-name="history"
+              data-type="normal"
+            >
+              <img
+                src="img/Bottom/historyActv.png"
+                class="h-6 w-6 md:h-16 md:h-16 md:w-14 mb-1 sm:mb-2 nav-icon"
+                alt="History"
+              />
+              <p
+                class="text-xs sm:text-xl md:text-3xl font-medium nav-text text-[#488cd2]"
+              >
+                History
+              </p>
+            </div>
+          </a>
+
+          <!-- Menu -->
+          <div
+            class="nav-item flex flex-col items-center"
+            data-name="menu"
+            data-type="normal"
+          >
+            <img
+              src="img/Bottom/menu.png"
+              class="h-6 w-6 md:h-16 md:w-14 mb-1 sm:mb-2 nav-icon"
+              alt="Menu"
+            />
+            <p
+              class="text-xs sm:text-xl md:text-3xl font-medium nav-text text-[#5e809b]"
+            >
+              Menu
+            </p>
+          </div>
+        </div>
+        <!-- <section class="w-full h-3 bg-[#eceff4]"></section> -->
+      </section>
+    </main>
+
+    <script>
+      const img = document.getElementById("displayImage");
+      const fileInput = document.getElementById("imageInput");
+
+      // ✅ Load image from localStorage if exists
+      const savedImage = localStorage.getItem("savedImage");
+      if (savedImage) {
+        img.src = savedImage;
+      }
+
+      // ✅ When user clicks the image
+      img.addEventListener("click", () => {
+        fileInput.click(); // trigger file input
+      });
+
+      // ✅ When user selects a new image
+      fileInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const imageData = e.target.result;
+            img.src = imageData; // replace image
+            localStorage.setItem("savedImage", imageData); // save to localStorage
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+  </body>
+</html>
